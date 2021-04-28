@@ -1,10 +1,10 @@
 version: "3"
 services:
   postgres:
-    container_name: postgres
+    container_name: studycordDB
     image: postgres:latest
     ports:
-      - "5432:5432"
+      - "5440:5432"
     volumes:
       - /data/postgres:/data/postgres
     env_file:
@@ -15,10 +15,10 @@ services:
   pgadmin:
     links:
       - postgres:postgres
-    container_name: pgadmin
+    container_name: admin-studycordDB
     image: dpage/pgadmin4
     ports:
-      - "8080:80"
+      - "8085:80"
     volumes:
       - /data/pgadmin:/root/.pgadmin
     env_file:
