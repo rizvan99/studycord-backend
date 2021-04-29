@@ -1,4 +1,7 @@
 import { Module } from '@nestjs/common';
+import { CategoryService } from './core/service/category.service';
 
-@Module({})
+@Module({
+  providers: [CategoryService]
+})
 export class ForumModule {}
