@@ -4,6 +4,8 @@ import { ChatModule } from './chat/chat.module';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from '@hapi/joi';
 import { DatabaseModule } from './database.module';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -20,6 +22,8 @@ import { DatabaseModule } from './database.module';
       }),
     }),
     DatabaseModule,
+    AuthModule,
+    UsersModule,
   ],
   controllers: [],
   providers: [],
