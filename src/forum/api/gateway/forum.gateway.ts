@@ -8,10 +8,14 @@ import {
 } from '@nestjs/websockets';
 import { CategoryService } from '../../core/service/category.service';
 import { Socket } from 'socket.io';
+import { ICategoryServiceProvider } from '../../core/interface/category.service.interface';
+import { Inject } from '@nestjs/common';
 
 @WebSocketGateway()
 export class ForumGateway implements OnGatewayConnection, OnGatewayDisconnect {
-  constructor(private categoryService: CategoryService) {}
+  constructor(
+    @Inject(ICategoryServiceProvider) private categoryService: CategoryService,
+  ) {}
 
   @WebSocketServer() server;
 
