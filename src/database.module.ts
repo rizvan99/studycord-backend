@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import CategoryDb from './forum/infrastructure/data-source/entities/category.entity';
+import UserDb from './users/infrastructure/user.entity';
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import CategoryDb from './forum/infrastructure/data-source/entities/category.ent
         password: configService.get('POSTGRES_PASSWORD'),
         database: configService.get('POSTGRES_DB'),
         entities: [
-          CategoryDb
+          CategoryDb, UserDb
         ],
         synchronize: true,
       }),
