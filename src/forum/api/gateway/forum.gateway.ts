@@ -20,13 +20,14 @@ export class ForumGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer() server;
 
   @SubscribeMessage('getAllCategories')
-  async handleGetStocks(@ConnectedSocket() client: Socket): Promise<void> {
+  async handleGetCategories(@ConnectedSocket() client: Socket): Promise<void> {
     const allCategories = await this.categoryService.getCategories();
     this.server.emit('category-getAll', allCategories);
   }
 
-  handleConnection(client: any, ...args: any[]): any {
-    return null;
+  async handleConnection(client: any, ...args: any[]): Promise<any> {
+    console.log('Client connected: ' + client.id);
+    this.server.emit('categories', await this.categoryService.getCategories());
   }
 
   handleDisconnect(client: any): any {
