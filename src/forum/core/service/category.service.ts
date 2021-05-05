@@ -9,11 +9,11 @@ import { ICategoryService } from '../interface/category.service.interface';
 export class CategoryService implements ICategoryService {
   constructor(
     @InjectRepository(CategoryDb)
-    private categoryReposistory: Repository<CategoryDb>,
+    private categoryRepository: Repository<CategoryDb>,
   ) {}
   async getCategories(): Promise<Category[]> {
-    const categories = await this.categoryReposistory.find();
-    const categoiresDb: Category[] = JSON.parse(JSON.stringify(categories));
-    return categoiresDb;
+    const categories = await this.categoryRepository.find();
+    const categoriesDb: Category[] = JSON.parse(JSON.stringify(categories));
+    return categoriesDb;
   }
 }
