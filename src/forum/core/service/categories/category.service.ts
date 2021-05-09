@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { Category } from '../model/category.model';
+import { Category } from '../../model/category.model';
 import { InjectRepository } from '@nestjs/typeorm';
-import CategoryDb from '../../infrastructure/data-source/entities/category.entity';
+import CategoryDb from '../../../infrastructure/data-source/entities/category.entity';
 import { Repository } from 'typeorm';
-import { ICategoryService } from '../interface/category.service.interface';
+import { ICategoryService } from '../../interface/icategory.service.interface';
 
 @Injectable()
 export class CategoryService implements ICategoryService {
