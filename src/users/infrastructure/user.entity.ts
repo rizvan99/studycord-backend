@@ -3,9 +3,9 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 class UserDb {
   @PrimaryGeneratedColumn()
-  public userId: number;
+  public userId?: number;
 
-  @Column()
+  @Column({ unique: true })
   public username: string;
 
   @Column()
