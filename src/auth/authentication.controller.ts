@@ -17,4 +17,5 @@ export class AuthenticationController {
   async login(@Req() req) {
     return this.authenticationService.login(req.user);
   }
+
 }

@@ -11,7 +11,7 @@ import {
   ICategoryService,
   ICategoryServiceProvider,
 } from '../../core/interface/category.service.interface';
-import { Inject } from '@nestjs/common';
+import { Body, Get, Inject } from '@nestjs/common';
 
 @WebSocketGateway()
 export class ForumGateway implements OnGatewayConnection, OnGatewayDisconnect {
@@ -24,7 +24,7 @@ export class ForumGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @SubscribeMessage('getAllCategories')
   async handleGetCategories(@ConnectedSocket() client: Socket): Promise<void> {
     const allCategories = await this.categoryService.getCategories();
-    this.server.emit('category-getAll', allCategories);
+    client.emit('categories', allCategories);
   }
 
   async handleConnection(client: any, ...args: any[]): Promise<any> {
@@ -33,6 +33,6 @@ export class ForumGateway implements OnGatewayConnection, OnGatewayDisconnect {
   }
 
   handleDisconnect(client: any): any {
-    return null;
+    console.log('Client disconnected: ' + client.id);
   }
 }

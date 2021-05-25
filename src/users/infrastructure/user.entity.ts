@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import QuestionDb from '../../forum/infrastructure/data-source/entities/question.entity';
+import ReplyDb from '../../forum/infrastructure/data-source/entities/reply.entity';
 
 @Entity()
 class UserDb {
@@ -9,6 +11,12 @@ class UserDb {
   public username: string;
 
   @Column()
-  public password: string;
+  public password?: string;
+
+  @OneToMany(() => QuestionDb, (question: QuestionDb) => question.createdBy)
+  public questions?: QuestionDb[];
+
+  @OneToMany(() => ReplyDb, (reply: ReplyDb) => reply.createdBy)
+  public replies?: ReplyDb[];
 }
 export default UserDb;
