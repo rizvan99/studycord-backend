@@ -1,5 +1,6 @@
 import {
-  ConnectedSocket, MessageBody,
+  ConnectedSocket,
+  MessageBody,
   OnGatewayConnection,
   OnGatewayDisconnect,
   SubscribeMessage,
@@ -12,7 +13,10 @@ import {
   ICategoryService,
   ICategoryServiceProvider,
 } from '../../core/interface/category.service.interface';
-import { IQuestionService, IQuestionServiceInterface } from '../../core/interface/question.service.interface';
+import {
+  IQuestionService,
+  IQuestionServiceInterface,
+} from '../../core/interface/question.service.interface';
 import { Question } from '../../core/model/question.model';
 import { CreateQuestionDto } from '../dto/create.question.dto';
 import { UserDto } from '../../../auth/dto/user.dto';
@@ -21,7 +25,8 @@ import { UserDto } from '../../../auth/dto/user.dto';
 export class QuestionGateway
   implements OnGatewayConnection, OnGatewayDisconnect {
   constructor(
-    @Inject(IQuestionServiceInterface) private questionService: IQuestionService,
+    @Inject(IQuestionServiceInterface)
+    private questionService: IQuestionService,
   ) {}
 
   @WebSocketServer() server;
@@ -63,5 +68,4 @@ export class QuestionGateway
   handleDisconnect(client: any): any {
     console.log('Client disconnected: ' + client.id);
   }
-
 }

@@ -2,7 +2,8 @@ import {
   Column,
   Entity,
   JoinColumn,
-  ManyToOne, OneToMany,
+  ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -38,5 +39,4 @@ class QuestionDb {
   @OneToMany(() => ReplyDb, (reply: ReplyDb) => reply.question)
   public replies?: ReplyDb[];
 }
-
 export default QuestionDb;
