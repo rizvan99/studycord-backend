@@ -30,7 +30,7 @@ export class ReplyService implements IReplyService {
       ...reply,
       question: question,
       createdBy: createdBy,
-      creationDate: Date.now().toString(),
+      creationDate: this.getToday(),
     });
     await this.replyRepository.save(newReply);
     console.log(newReply);
@@ -56,6 +56,20 @@ export class ReplyService implements IReplyService {
       return reply;
     }
     throw new HttpException('Reply not found', HttpStatus.NOT_FOUND);
+  }
+
+  getToday(): string {
+    const today = new Date();
+    const date =
+      today.getFullYear() +
+      '-' +
+      (today.getMonth() + 1) +
+      '-' +
+      today.getDate();
+    const time =
+      today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+    const dateTime = date + '.' + time;
+    return dateTime;
   }
 
 

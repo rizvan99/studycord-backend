@@ -20,6 +20,12 @@ import ReplyDb from './forum/infrastructure/data-source/entities/reply.entity';
         database: configService.get('POSTGRES_DB'),
         entities: [CategoryDb, UserDb, QuestionDb, ReplyDb],
         synchronize: true,
+        ssl: true,
+        extra: {
+          ssl: {
+            rejectUnauthorized: false,
+          },
+        },
       }),
     }),
   ],

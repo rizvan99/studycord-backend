@@ -59,5 +59,4 @@ export class QuestionGateway {
       client.emit('question-create-error', e.message);
     }
   }
-
 }

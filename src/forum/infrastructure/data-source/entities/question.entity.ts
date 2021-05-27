@@ -38,6 +38,7 @@ class QuestionDb {
 
   @OneToMany(() => ReplyDb, (reply: ReplyDb) => reply.question, {
     eager: true,
+    cascade: true,
   })
   public replies?: ReplyDb[];
 }

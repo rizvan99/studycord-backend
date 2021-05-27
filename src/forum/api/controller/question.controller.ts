@@ -1,5 +1,4 @@
 import { Controller, Get, NotFoundException, Param } from '@nestjs/common';
-import { CategoryService } from '../../core/service/category.service';
 import { QuestionService } from '../../core/service/question.service';
 
 @Controller('questions')
