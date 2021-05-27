@@ -35,7 +35,9 @@ class QuestionDb {
   })
   public createdBy: UserDb;
 
-  @OneToMany(() => ReplyDb, (reply: ReplyDb) => reply.question)
+  @OneToMany(() => ReplyDb, (reply: ReplyDb) => reply.question, {
+    eager: true,
+  })
   public replies?: ReplyDb[];
 }
 

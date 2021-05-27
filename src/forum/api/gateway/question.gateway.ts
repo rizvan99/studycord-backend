@@ -18,8 +18,7 @@ import { CreateQuestionDto } from '../dto/create.question.dto';
 import { UserDto } from '../../../auth/dto/user.dto';
 
 @WebSocketGateway()
-export class QuestionGateway
-  implements OnGatewayConnection, OnGatewayDisconnect {
+export class QuestionGateway {
   constructor(
     @Inject(IQuestionServiceInterface) private questionService: IQuestionService,
   ) {}
@@ -56,12 +55,6 @@ export class QuestionGateway
     }
   }
 
-  async handleConnection(client: any, ...args: any[]): Promise<any> {
-    console.log('Client connected: ' + client.id);
-  }
 
-  handleDisconnect(client: any): any {
-    console.log('Client disconnected: ' + client.id);
-  }
 
 }

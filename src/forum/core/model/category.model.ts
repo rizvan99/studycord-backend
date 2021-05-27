@@ -10,5 +10,4 @@ export class CategoryClass implements Category {
   id: number;
   name: string;
   questions: Question[];
-
 }

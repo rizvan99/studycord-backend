@@ -14,14 +14,20 @@ import { ReplyService } from './core/service/reply.service';
 import UserDb from '../users/infrastructure/user.entity';
 import { IReplyServiceProvider } from './core/interface/reply.service.interface';
 import ReplyDb from './infrastructure/data-source/entities/reply.entity';
+import { QuestionController } from './api/controller/question.controller';
+import { ReplyGateway } from './api/gateway/reply.gateway';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CategoryDb, QuestionDb, UserDb, ReplyDb])],
+  imports: [
+    TypeOrmModule.forFeature([CategoryDb, QuestionDb, UserDb, ReplyDb]),
+  ],
   providers: [
     CategoryService,
     UsersService,
     ForumGateway,
     QuestionGateway,
+    ReplyGateway,
+    QuestionService,
     {
       provide: ICategoryServiceProvider,
       useClass: CategoryService,
@@ -35,7 +41,7 @@ import ReplyDb from './infrastructure/data-source/entities/reply.entity';
       useClass: ReplyService,
     },
   ],
-  controllers: [ForumController],
-  exports: [CategoryService, UsersService],
+  controllers: [ForumController, QuestionController],
+  exports: [CategoryService, UsersService, QuestionService],
 })
 export class ForumModule {}

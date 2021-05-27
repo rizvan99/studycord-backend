@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import QuestionDb from '../../infrastructure/data-source/entities/question.entity';
 import { Repository } from 'typeorm';
 import { CreateQuestionDto } from '../../api/dto/create.question.dto';
-import { Category } from '../model/category.model';
+import { Category, CategoryClass } from '../model/category.model';
 import { IQuestionService } from '../interface/question.service.interface';
 import { User } from '../../../users/model/user.model';
 import { UserDto } from '../../../auth/dto/user.dto';
@@ -29,14 +29,17 @@ export class QuestionService implements IQuestionService {
   }
 
   async getQuestionById(id: number) {
-    const question = await this.questionRepository.findOne(
-      { id: id },
-      { relations: ['createdBy'] },
-    );
-    if (question) {
-      return question;
+    try {
+      const question = await this.questionRepository.findOne(
+        { id: id },
+        { relations: ['replies'] },
+      );
+      if (question) {
+        return question;
+      }
+    } catch (e) {
+      throw new HttpException('Question not found', HttpStatus.NOT_FOUND);
     }
-    throw new HttpException('Question not found', HttpStatus.NOT_FOUND);
   }
 
   async createQuestion(

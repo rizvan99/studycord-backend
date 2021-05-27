@@ -16,17 +16,14 @@ class ReplyDb {
   public content: string;
   @Column()
   public creationDate: string;
+
   @ManyToOne(() => UserDb, (createdBy: UserDb) => createdBy.replies, {
     eager: true,
     cascade: true,
-    nullable: true,
   })
   public createdBy: UserDb;
-  @ManyToOne(() => QuestionDb, (question: QuestionDb) => question.replies, {
-    eager: true,
-    cascade: true,
-    nullable: true,
-  })
+
+  @ManyToOne(() => QuestionDb, (question: QuestionDb) => question.replies)
   public question: QuestionDb;
 }
 

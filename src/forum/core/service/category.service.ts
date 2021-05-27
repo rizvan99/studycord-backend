@@ -23,7 +23,6 @@ export class CategoryService implements ICategoryService {
         { name: name },
         { relations: ['questions'] },
       );
-
       if (category) {
         // workaround to avoid circular relations
         category.questions.forEach((q) => {

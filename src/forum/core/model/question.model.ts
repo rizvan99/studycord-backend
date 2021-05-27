@@ -11,3 +11,4 @@ export interface Question {
   category: Category;
   replies?: Reply[];
 }
+
