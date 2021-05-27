@@ -18,9 +18,7 @@ import ReplyDb from './forum/infrastructure/data-source/entities/reply.entity';
         username: configService.get('POSTGRES_USER'),
         password: configService.get('POSTGRES_PASSWORD'),
         database: configService.get('POSTGRES_DB'),
-        entities: [
-          CategoryDb, UserDb, QuestionDb, ReplyDb
-        ],
+        entities: [CategoryDb, UserDb, QuestionDb, ReplyDb],
         synchronize: true,
       }),
     }),

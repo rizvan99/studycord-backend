@@ -2,7 +2,8 @@ import {
   Column,
   Entity,
   JoinColumn,
-  ManyToOne, OneToMany,
+  ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -40,5 +41,4 @@ class QuestionDb {
   })
   public replies?: ReplyDb[];
 }
-
 export default QuestionDb;

@@ -10,15 +10,15 @@ import { UserDto } from '../../../auth/dto/user.dto';
 import UserDb from '../../../users/infrastructure/user.entity';
 import { UsersService } from '../../../users/users.service';
 import { CategoryService } from './category.service';
+import DateTimeFormat = Intl.DateTimeFormat;
 
 @Injectable()
 export class QuestionService implements IQuestionService {
-
   constructor(
     @InjectRepository(QuestionDb)
     private questionRepository: Repository<QuestionDb>,
     private userService: UsersService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
   ) {}
 
   async getAllQuestions() {
@@ -52,7 +52,7 @@ export class QuestionService implements IQuestionService {
       ...question,
       category: category,
       createdBy: createdBy,
-      creationDate: Date.now().toString(),
+      creationDate: this.getToday(),
     });
     await this.questionRepository.save(newQuestion);
     console.log(newQuestion);
@@ -66,5 +66,17 @@ export class QuestionService implements IQuestionService {
     }
   }
 
-
+  getToday(): string {
+    const today = new Date();
+    const date =
+      today.getFullYear() +
+      '-' +
+      (today.getMonth() + 1) +
+      '-' +
+      today.getDate();
+    const time =
+      today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+    const dateTime = date + '.' + time;
+    return dateTime;
+  }
 }
